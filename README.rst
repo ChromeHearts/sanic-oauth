@@ -1,6 +1,10 @@
 Sanic OAuth
 -----------
 
+Update on 20220629  
+This is forked from https://gitlab.com/SirEdvin/sanic-oauth/-/tree/master  
+My intension is to make this working with the latest Sanic
+
 
 Simple OAuth library to work with sanic. Basically, just rewrited version of aioauth_client_ with async/await syntax and some optimization. Can be used only with python 3.5/3.6.
 
