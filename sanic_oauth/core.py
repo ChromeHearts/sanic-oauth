@@ -3,7 +3,7 @@ import base64
 import logging
 from urllib.parse import urlencode, urljoin, quote, parse_qsl, urlsplit
 from hashlib import sha1
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Any
 import hmac
 import random
 import time
@@ -37,6 +37,21 @@ class UserInfo:  # pylint: disable=too-few-public-methods
             setattr(self, attr, '')
         for key, value in kwargs.items():
             setattr(self, key, value)
+
+    def toDict(self) -> Dict[str, Any]:
+        ret = dict()
+        for k in UserInfo.default_attrs:
+            if (v:=getattr(self, k)) is not None:
+                ret[k] = v
+        return ret
+
+    def __repr__(self) -> str:
+        ret = ""
+        for k in UserInfo.default_attrs:
+            if (v:=getattr(self, k)) is not None:
+                ret += f"{k}={v}\n"
+        return ret
+
 
 
 class Signature(abc.ABC):
